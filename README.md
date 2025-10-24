@@ -162,43 +162,68 @@ Parabéns! A aplicação Online Boutique está rodando no seu cluster, gerenciad
 
 ---
 
-## 🧪 Validando o Fluxo GitOps
-
+## 🧪 tarefas extras
 Vamos testar o ciclo completo do GitOps alterando o número de réplicas do frontend.
 
-1.  **Clone o Repositório de Manifestos**
-    Se ainda não o fez, clone o repositório que você criou na Etapa 1.
-    ```bash
-    git clone [https://github.com/](https://github.com/)<SEU_USUARIO_GITHUB>/<SEU_REPO_MANIFESTOS>.git
-    cd <SEU_REPO_MANIFESTOS>
-    ```
 
-2.  **Altere o Manifesto**
-    Abra o arquivo `k8s/online-boutique.yaml` e localize o `Deployment` com o nome `frontend`. Altere o campo `replicas` de `1` para `3`.
-    ![Editando réplicas](https://github.com/user-attachments/assets/9ea2aa06-f6b7-4c0d-b33c-38c9757adad4)
+1.  **Altere o Manifesto**
+    Abra o arquivo `k8s/online-boutique.yaml` e localize o `Deployment` com o nome `frontend`. Adicione e altere o campo `replicas` de `1` para `3`.
 
-3.  **Faça o Commit e Push**
-    Envie a alteração para o GitHub.
-    ```bash
-    git add .
-    git commit -m "feat: Aumenta réplicas do frontend para 3"
-    git push
-    ```
 
-4.  **Observe a Mágica!** ✨
+     ![Editando réplicas](https://github.com/user-attachments/assets/53bb61b3-d2b8-492c-847e-f7c027cff62d )
+
+
+
+2.  **Observe a Mágica!** ✨
     Volte para a UI do ArgoCD. Em poucos instantes, ele detectará a alteração, entrará em estado `Syncing` e aplicará a mudança no cluster.
-    ![ArgoCD Sincronizando](https://github.com/user-attachments/assets/45116b6c-7eb9-463a-8d83-f47b9c31f543)
 
-5.  **Confirme no Cluster**
+
+
+      ![ArgoCD Sincronizando](https://github.com/user-attachments/assets/333257a8-eb67-440c-a64a-6297bbed16c9)
+
+6.  **Confirme no Cluster**
     Verifique os pods do frontend. Agora você verá 3 pods em execução!
     ```bash
     kubectl get pods -l app=frontend
     ```
-    ![3 réplicas](https://github.com/user-attachments/assets/b5390dc0-599d-483a-88a8-8aa336d101e0)
+    ![3 réplicas](https://github.com/user-attachments/assets/795df9f4-40f6-4d3a-8c00-394ae9c28bb4)
 
 Este teste confirma que o Git é a única fonte da verdade e o ArgoCD garante que o estado do cluster corresponda ao que está versionado.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 🧹 Limpeza do Ambiente
 
