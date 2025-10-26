@@ -162,7 +162,7 @@ Parabéns! A aplicação Online Boutique está rodando no seu cluster, gerenciad
 
 ---
 
-## 🧪 tarefas extras
+## 🧪 tarefas extra 1
 Vamos testar o ciclo completo do GitOps alterando o número de réplicas do frontend.
 
 
@@ -192,8 +192,46 @@ Este teste confirma que o Git é a única fonte da verdade e o ArgoCD garante qu
 
 ---
 
+## 🧪 tarefas extra 2
+# 🔐 Conectando o ArgoCD a Repositórios Git Privados
 
+Em um ambiente de produção, manter o código-fonte e os manifestos de configuração em repositórios privados é uma prática de segurança fundamental.  
+Para que uma ferramenta de **GitOps** como o **ArgoCD** possa automatizar o deploy, ela precisa de um meio seguro para acessar esses repositórios.
 
+Este guia detalha dois métodos robustos e amplamente utilizados para estabelecer essa conexão:  
+usando um **Personal Access Token (PAT)** sobre HTTPS e configurando o acesso via **chaves SSH**.
+
+---
+
+## 🧭 Método 1: Conexão via Personal Access Token (HTTPS)
+
+Esta abordagem é ideal para uma configuração rápida e quando a política de rede favorece o tráfego HTTPS.  
+Um **PAT** funciona como uma senha com escopo limitado, permitindo um controle granular sobre as permissões.
+
+### 🔹 Passo 1: Gerar o Personal Access Token (PAT)
+
+O primeiro passo é criar um token no seu provedor Git (GitHub, GitLab, etc.).
+
+**No GitHub:**
+
+1. Vá para **Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)**.  
+2. Clique em **`Generate new token`**.  
+3. **Name:** dê um nome descritivo, como `argocd-read-only-token`.  
+4. **Expiration:** defina uma data de expiração.  
+   > 💡 *Recomendação:* nunca crie tokens que nunca expiram.  
+5. **Scopes:** selecione o escopo `repo`.  
+   Isso concede as permissões necessárias para clonar repositórios privados.  
+6. Clique em **`Generate token`** e **copie o token imediatamente** — ele **não será exibido novamente**.
+
+---
+
+### 🔹 Passo 2: Montar a URL do Repositório
+
+Com o token em mãos, construa a URL de clone no formato:
+
+```bash
+https://<SEU_TOKEN>@github.com/<NOME_DE_USUARIO>/<NOME_DO_REPOSITORIO
+```
 
 
 
